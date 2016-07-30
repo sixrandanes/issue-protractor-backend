@@ -1,0 +1,23 @@
+#! /usr/bin/env bash
+
+if [ "$#" -ne 1 ]; then
+	echo "Usage: $(basename $0) <commit-message-file>" >&2
+	exit 1
+fi
+
+file="$1"
+
+if ! [ -f "$file" ]; then
+	echo "No such file: $file" >&2
+	exit 1
+fi
+
+message=$(grep -vE '^#' "$file" | sed '/^\s*$/d')
+types='feat|fix|docs|style|refactor|perf|test|chore'
+lines_count=$(echo "$message" | wc -l | sed 's/ .*//')
+
+if [ "$lines_count" -ne 1 ] || ! echo "$message" | grep -iqE "^(${types})\([^)]+\): .+[^\.]"; then
+	echo -e "Message de commit invalide. Le format du message doit être sous la forme :\n"
+	echo -e "type(scope): Sujet\n\nLes différents types sont : {$(echo $types | sed -r 's/\|/, /g')}" >&2
+	exit 1
+fi

@@ -1,0 +1,60 @@
+jar {
+    baseName = 'ilda-core'
+    manifest {
+        attributes("Implementation-Title": "ilda",
+                   "Implementation-Version": version)
+    }
+}
+
+sourceSets {
+    integrationTest {
+        java.srcDir file('src/integration-test/java')
+    }
+}
+
+
+dependencies {
+	compile project(':etudes-commons')
+	
+	testCompile project(':etudes-commons').sourceSets.test.output
+
+	integrationTestCompile sourceSets.main.output
+    integrationTestCompile configurations.testCompile
+    integrationTestCompile sourceSets.test.output
+    integrationTestRuntime configurations.testRuntime
+}
+
+test {
+  useTestNG()
+  
+}
+
+task integrationTest(type: Test, dependsOn: [build,jar]) {
+    group 'Verification'
+    description 'Runs the integration tests.'
+    useTestNG()
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    systemProperties['jar.path'] = jar.archivePath
+    include '**/*TestIT.*'
+    
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/test-it.exec")
+    }
+     
+}
+
+integrationTest { 
+     // Chargement par défaut du profil "local" lors d'un lancement de la tache [integrationTest]
+     if (project.hasProperty("profile_test")) {
+     	systemProperty "spring.profiles.active", "${profile_test}"
+	 }else{
+	    systemProperty "spring.profiles.active", "local"
+	 }
+	 
+	 // Gestion du répertoire du logger
+	 if ( System.getProperty ('APP_LOG_DIR', 'null') == 'null' ) {
+		def var_dir = project.getRootDir()
+		environment 'APP_LOG_DIR', "${var_dir}"
+	 }
+}

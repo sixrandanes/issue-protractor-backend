@@ -1,0 +1,94 @@
+spring:
+ main:
+  banner-mode: log
+ hibernate:
+  ddl: auto
+ application:
+  name: ilda
+ boot:
+  admin:
+   url: http://localhost:8083
+   client:
+    serviceUrl: http://localhost:8083
+ output:
+  ansi:
+   enabled: detect
+management:
+ port: 8084
+ address: 0.0.0.0
+ context-path: /supervision
+multipart:
+  max-file-size: 10Mb
+  max-request-size: 10Mb
+#SERVER
+server:
+ port: 8083
+ session-timeout: 300
+ tomcat.uri-encoding: UTF-8
+ compression:
+  enabled: true
+  mime-types: application/json
+ilda:
+ show:
+  sql: true
+datasource:
+ initialize: false
+ ilda:
+  driverClassName: org.postgresql.Driver
+#EUREKA
+eureka: 
+ client:
+  serviceUrl:
+   defaultZone: https://castor.dev.appli-gestion.nc/eureka/
+#CERBERE  
+trinity:
+ cerbere:
+  clients:
+   gemini-ref:
+    client-id: 0ad7deb19c0d5c6d3354398f56eaa98f0f1a0715df5b8c3e9e0f47a27eb537c1
+    client-secret: aac3cd2749b4c199dc78f22b2a94d19ea9c9116bc9c764193df19a535c74543a
+#LOGS
+logging:
+ level:
+  org:
+   springframework: 
+    test:
+     context: DEBUG
+    security: DEBUG
+ file: /tmp/ilda.log
+
+---
+spring:
+ profiles: local
+datasource:
+ ilda:
+  url: jdbc:postgresql://localhost:5432/ILDA
+  username: ILDA
+  password: ILDA
+trinity:
+ cerbere:
+  keys-directory: ${ILDA_KEYS_DIR}
+---
+spring:
+ profiles: jenkins
+datasource:
+ ilda:
+  url: jdbc:postgresql://ilda-test-db.dev.appli-gestion.nc:5432/ilda
+  username: ilda
+  password: cd31a5964
+trinity:
+ cerbere:
+  keys-directory: /data/trinity/keys
+---
+spring:
+ profiles: develop
+datasource:
+ ilda:
+  url: jdbc:postgresql://ilda-db.dev.appli-gestion.nc:5432/ilda
+logging:
+ level:
+  org:
+   springframework: 
+    test:
+     context: INFO
+    security: INFO
