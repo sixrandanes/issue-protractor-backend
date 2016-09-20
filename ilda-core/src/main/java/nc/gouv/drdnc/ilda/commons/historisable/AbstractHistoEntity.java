@@ -3,21 +3,22 @@
  */
 package nc.gouv.drdnc.ilda.commons.historisable;
 
-import static nc.gouv.dtsi.etudes.commons.utils.Constantes.DTF;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import nc.gouv.drdnc.ilda.commons.utils.AbstractUUIEntity;
 
-import nc.gouv.dtsi.etudes.commons.utils.AbstractUUIEntity;
+import static nc.gouv.drdnc.ilda.commons.utils.Constantes.DTF;
+
 
 /**
  * Factorisation des champs d'une entité avec historique (date d'effet et de fin d'effet)
@@ -33,6 +34,7 @@ public abstract class AbstractHistoEntity extends AbstractUUIEntity implements I
     private static final long serialVersionUID = 150401042193202270L;
 
     @Column(name = "DATE_EFFET")
+    @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)

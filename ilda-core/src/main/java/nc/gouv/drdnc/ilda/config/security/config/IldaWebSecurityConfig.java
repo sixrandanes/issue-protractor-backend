@@ -20,7 +20,6 @@ import nc.gouv.drdnc.ilda.config.security.SecureUrls;
 @Order(0)
 public class IldaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     /**
      * {@inheritDoc}
      */

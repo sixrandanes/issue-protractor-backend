@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/etudes-commons/etudes-commons.iml" filepath="$PROJECT_DIR$/.idea/modules/etudes-commons/etudes-commons.iml" group="etudes-commons" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/etudes-commons/etudes-commons_main.iml" filepath="$PROJECT_DIR$/.idea/modules/etudes-commons/etudes-commons_main.iml" group="etudes-commons" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/etudes-commons/etudes-commons_test.iml" filepath="$PROJECT_DIR$/.idea/modules/etudes-commons/etudes-commons_test.iml" group="etudes-commons" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ilda-backend.iml" filepath="$PROJECT_DIR$/.idea/modules/ilda-backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ilda-backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ilda-backend_main.iml" group="ilda-backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ilda-backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ilda-backend_test.iml" group="ilda-backend" />
@@ -12,9 +9,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ilda-core/ilda-core_integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/ilda-core/ilda-core_integrationTest.iml" group="ilda-core" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ilda-core/ilda-core_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ilda-core/ilda-core_main.iml" group="ilda-core" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ilda-core/ilda-core_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ilda-core/ilda-core_test.iml" group="ilda-core" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ilda-hal-browser/ilda-hal-browser.iml" filepath="$PROJECT_DIR$/.idea/modules/ilda-hal-browser/ilda-hal-browser.iml" group="ilda-hal-browser" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ilda-hal-browser/ilda-hal-browser_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ilda-hal-browser/ilda-hal-browser_main.iml" group="ilda-hal-browser" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ilda-hal-browser/ilda-hal-browser_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ilda-hal-browser/ilda-hal-browser_test.iml" group="ilda-hal-browser" />
     </modules>
   </component>
 </project>

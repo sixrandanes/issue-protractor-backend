@@ -33,8 +33,9 @@ public class IldaJpaVendorAdapter {
     public JpaVendorAdapter jpaVendorAdapterIlda() {
         // Utilisation d'une BDD Postgresql
         hibernateJVA.setShowSql(showSql);
-        hibernateJVA.setDatabase(Database.POSTGRESQL);
-        hibernateJVA.setDatabasePlatform("org.hibernate.dialect.PostgreSQL9Dialect");
+        hibernateJVA.setDatabase(Database.H2);
+        hibernateJVA.setGenerateDdl(true);
+        hibernateJVA.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
         return hibernateJVA;
     }
 

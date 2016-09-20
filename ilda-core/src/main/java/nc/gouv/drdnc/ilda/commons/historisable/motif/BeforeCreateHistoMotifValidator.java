@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 /**
- * Validation des RG sur les IHistorisableAvecMotif à la création
+ * Validation des RG sur les IHistorisableAvecMotifObligatoire à la création
  *
  * @author ILDA
  */
@@ -18,7 +18,7 @@ public class BeforeCreateHistoMotifValidator implements Validator {
     @Override
     public boolean supports(final Class<?> clazz) {
         // Les instances de IHistorisableAvecMotif sont acceptées
-        return IHistorisableAvecMotif.class.isAssignableFrom(clazz);
+        return IHistorisableAvecMotifObligatoire.class.isAssignableFrom(clazz);
     }
 
     /**
@@ -27,7 +27,7 @@ public class BeforeCreateHistoMotifValidator implements Validator {
     @Override
     public void validate(final Object target, final Errors errors) {
 
-        final IHistorisableAvecMotif entt = (IHistorisableAvecMotif) target;
+        final IHistorisableAvecMotifObligatoire entt = (IHistorisableAvecMotifObligatoire) target;
 
         // RG : si date effet not null, alors motif effet obligatoire
         if (entt.getDateEffet() != null && (entt.getMotifEffet() == null || entt.getMotifEffet().length() == 0)) {

@@ -9,9 +9,9 @@ import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import nc.gouv.drdnc.ilda.commons.utils.Constantes;
 import org.springframework.validation.Errors;
 
-import nc.gouv.dtsi.etudes.commons.utils.Constantes;
 
 /**
  * Validation des RG sur les IHistorisable à l'update
@@ -54,13 +54,12 @@ public abstract class BeforeSaveHistorisableValidator extends BeforeCreateHistor
         LocalDate today = LocalDate.now(ZoneId.of(Constantes.GMT11));
         List<IHistorisable> siblings = getSiblingsForUncityCheck(entt);
         /*
-         * RG : Une et une seule occurrence de Code/Désignation possède une Date d'effet vide OU une Date d'effet > à
-         * date du jour OU une Date de fin d'effet = vide
+         * RG : Une et une seule occurrence de Code/Désignation possède une Date d'effet > à date du jour
          */
         boolean rg1 = siblings.stream()
                 .filter(sib -> !sib.getId().equals(entt.getId()))
-                .anyMatch(sib -> (entt.getDateEffet() == null || entt.getDateEffet().isAfter(today))
-                        && (sib.getDateEffet() == null || sib.getDateEffet().isAfter(today) || sib.getDateFinEffet() == null));
+                .anyMatch(sib -> (entt.getDateEffet().isAfter(today))
+                        && (sib.getDateEffet().isAfter(today)));
         /*
          * RG : pas de chevauchement des périodes
          */

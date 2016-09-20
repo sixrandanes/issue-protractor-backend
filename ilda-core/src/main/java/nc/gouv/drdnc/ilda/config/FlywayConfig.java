@@ -32,38 +32,11 @@ public class FlywayConfig {
 	 * @return L'instance de FlyWay initialisée pour le projet
 	 */
 	@Bean(name = "flyway")
-	@Profile({ "local", "jenkins" })
 	public Flyway flywayTest() {
 		// En Local et test, on supprime la BDD pour la recréer entièrement
 		flywayBean.setDataSource(ildaDataSource);
 		flywayBean.setSchemas("ILDA");
-		flywayBean.clean();
-		flywayBean.migrate();
 		return flywayBean;
 	}
 
-	/**
-	 * Instanciation et initialisation de FLyWay pour les profils - production -
-	 * dev - itg
-	 *
-	 * @return L'instance de FlyWay initialisé pour le projet
-	 */
-	@Bean(name = "flyway")
-	@Profile({ "production", "develop" })
-	public Flyway flyway() {
-		// Sur les environnements d'integ, valid, prod, etc., on ne fait que la
-		// migration incrémentale
-		flywayBean.setDataSource(ildaDataSource);
-		flywayBean.setSchemas("ILDA");
-
-		// En cas d'erreur, réparer la BDD
-		if (flywayBean.info() != null && flywayBean.info().current() != null
-				&& MigrationState.FAILED == flywayBean.info().current().getState()) {
-
-			flywayBean.repair();
-		}
-		flywayBean.setOutOfOrder(true);
-		flywayBean.migrate();
-		return flywayBean;
-	}
 }

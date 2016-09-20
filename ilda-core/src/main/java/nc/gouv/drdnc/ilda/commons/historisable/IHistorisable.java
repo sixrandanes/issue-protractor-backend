@@ -1,8 +1,9 @@
 package nc.gouv.drdnc.ilda.commons.historisable;
 
+import nc.gouv.drdnc.ilda.commons.utils.IEntity;
+
 import java.time.LocalDate;
 
-import nc.gouv.dtsi.etudes.commons.utils.IEntity;
 
 /**
  * Interface représentant un objet ayant un historique, c'est-à-dire des plages de validité.

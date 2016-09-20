@@ -1,1 +1,1 @@
-include 'ilda-core','ilda-hal-browser','etudes-commons'
+include 'ilda-core'

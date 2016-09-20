@@ -1,7 +1,0 @@
-jar {
-    baseName = 'ilda-hal-browser'
-}
-
-dependencies {
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-}

@@ -19,6 +19,9 @@ public interface Messages {
     /** MaxLength : 5 caractères */
     String MAX_LENGTH_5 = "Champ limité à 5 caractères";
 
+	/** MaxLength : 5 caractères */
+	String MAX_LENGTH_6 = "Champ limité à 6 caractères";
+
     /** MaxLength : 50 caractères */
     String MAX_LENGTH_50 = "Champ limité à 50 caractères";
 

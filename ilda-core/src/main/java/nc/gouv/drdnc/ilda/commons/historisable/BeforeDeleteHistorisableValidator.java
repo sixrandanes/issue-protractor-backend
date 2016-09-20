@@ -3,11 +3,11 @@ package nc.gouv.drdnc.ilda.commons.historisable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
+import nc.gouv.drdnc.ilda.commons.utils.Constantes;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import nc.gouv.dtsi.etudes.commons.utils.Constantes;
 
 /**
  * Validation des RG sur les IHistorisable à la suppression

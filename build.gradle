@@ -14,7 +14,7 @@ buildscript {
     }
 }
 
-configure(allprojects - project(':etudes-commons')) {
+configure(allprojects) {
     apply plugin: 'java'
     apply plugin: 'spring-boot'
     apply plugin: 'jacoco'
@@ -43,8 +43,9 @@ configure(allprojects - project(':etudes-commons')) {
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest'
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
-        compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1206-jdbc42'
+        compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.1"
         compile group: 'org.flywaydb', name: 'flyway-core'
+        compile group: 'com.h2database', name: 'h2', version: '1.4.192'
         
         testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
         testCompile group: 'org.springframework.security', name: 'spring-security-test'

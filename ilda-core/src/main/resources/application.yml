@@ -2,7 +2,7 @@ spring:
  main:
   banner-mode: log
  hibernate:
-  ddl: auto
+  ddl: create-drop
  application:
   name: ilda
  boot:
@@ -34,19 +34,10 @@ ilda:
 datasource:
  initialize: false
  ilda:
-  driverClassName: org.postgresql.Driver
-#EUREKA
-eureka: 
- client:
-  serviceUrl:
-   defaultZone: https://castor.dev.appli-gestion.nc/eureka/
-#CERBERE  
-trinity:
- cerbere:
-  clients:
-   gemini-ref:
-    client-id: 0ad7deb19c0d5c6d3354398f56eaa98f0f1a0715df5b8c3e9e0f47a27eb537c1
-    client-secret: aac3cd2749b4c199dc78f22b2a94d19ea9c9116bc9c764193df19a535c74543a
+  driverClassName: org.h2.Driver
+  url: jdbc:h2:mem:ILDA;DB_CLOSE_DELAY=-1;
+  username: sa
+  password:
 #LOGS
 logging:
  level:
@@ -55,40 +46,3 @@ logging:
     test:
      context: DEBUG
     security: DEBUG
- file: /tmp/ilda.log
-
----
-spring:
- profiles: local
-datasource:
- ilda:
-  url: jdbc:postgresql://localhost:5432/ILDA
-  username: ILDA
-  password: ILDA
-trinity:
- cerbere:
-  keys-directory: ${ILDA_KEYS_DIR}
----
-spring:
- profiles: jenkins
-datasource:
- ilda:
-  url: jdbc:postgresql://ilda-test-db.dev.appli-gestion.nc:5432/ilda
-  username: ilda
-  password: cd31a5964
-trinity:
- cerbere:
-  keys-directory: /data/trinity/keys
----
-spring:
- profiles: develop
-datasource:
- ilda:
-  url: jdbc:postgresql://ilda-db.dev.appli-gestion.nc:5432/ilda
-logging:
- level:
-  org:
-   springframework: 
-    test:
-     context: INFO
-    security: INFO
